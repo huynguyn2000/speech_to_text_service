@@ -1,0 +1,34 @@
+### Health Check
+GET http://localhost:8000/health
+
+### Test WAV File
+POST http://localhost:8000/transcribe
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="audio_file"; filename="test.wav"
+Content-Type: audio/wav
+
+< ./test.wav
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Test MP3 File
+POST http://localhost:8000/transcribe
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="audio_file"; filename="sample.mp3"
+Content-Type: audio/mpeg
+
+< ./sample.mp3
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Test Error - No File
+POST http://localhost:8000/transcribe
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="audio_file"
+Content-Type: audio/wav
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
