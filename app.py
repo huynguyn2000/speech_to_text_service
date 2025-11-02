@@ -5,9 +5,9 @@ from pydub import AudioSegment
 import torch
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
 import numpy as np
-import io
-import os
 import tempfile
+import os
+hf_token = os.getenv("HF_TOKEN")
 
 app = FastAPI()
 
@@ -24,7 +24,9 @@ app.add_middleware(
 # Load your Wav2Vec2 model
 def load_model():
     processor = Wav2Vec2Processor.from_pretrained("hoanghuy2000gl/Wav2Vec2-VIVOS")
-    model = Wav2Vec2ForCTC.from_pretrained("hoanghuy2000gl/Wav2Vec2-VIVOS")
+    model = Wav2Vec2ForCTC.from_pretrained("hoanghuy2000gl/Wav2Vec2-VIVOS",
+        token=hf_token
+    )
     return processor, model
 
 
